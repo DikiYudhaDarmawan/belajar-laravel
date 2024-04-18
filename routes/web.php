@@ -40,8 +40,8 @@ Route::get('/animals', function () {
 });
 
 Route::get('/vegetables', function () {
-    $fruit = ["apple", "grape", "starfruit", "melom"];
-    return view('vegetables_page', ['buah' == $fruit]);
+    $fruit = ["apple", "grape", "starfruit", "melon"];
+    return view('vegetables_page', ['buah' => $fruit]);
 });
 
 
