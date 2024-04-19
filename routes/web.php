@@ -66,5 +66,8 @@ Route::get('/myself/{name}/{bb}/{tb}', function ($name, $bb, $tb) {
         "keterangan : $ket";
 });
 
+Routr::get('myname/{nama?}', function($a = "Abdu"){
+    return "my name is $a";
+});
 
 
