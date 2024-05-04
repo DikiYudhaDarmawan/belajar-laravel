@@ -1,8 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\Post;
 use App\Models\Barang;
+use App\Models\Pengguna;
+use App\Models\Post;
+use App\Models\Produk;
+use App\Models\Siswa;
+use App\Models\Telepon;
+use App\Models\Merek;
+use App\Models\Transaksi;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +19,7 @@ use App\Models\Barang;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +30,7 @@ Route::get('/about', function () {
     return '<h1>halo</h1>'
         . 'selamat datang di webapp saya <br>'
         . 'Laravel, emang keren.';
-}) ;
+});
 
 //perkenalan
 Route::get('/biodata', function () {
@@ -46,38 +52,77 @@ Route::get('/vegetables', function () {
     return view('vegetables_page', ['buah' => $fruit]);
 });
 
-
 //route parameter
 Route::get('/myself/{name}/{bb}/{tb}', function ($name, $bb, $tb) {
     $bmi = $bb / (($tb / 100) * 2);
-    if ($bmi > 30){
+    if ($bmi > 30) {
         $ket = "Obesitas";
-    } elseif ($bmi >25) {
+    } elseif ($bmi > 25) {
         $ket = "kelebihan";
-    } elseif ($bmi > 18.5){
+    } elseif ($bmi > 18.5) {
         $ket = "ideal";
-    } elseif ($bmi < 18.5){
+    } elseif ($bmi < 18.5) {
         $ket = "kekurangan";
     }
-
 
     return "nama: $name <br>" .
         "tb : $bb <br>" .
         "bb : $tb <br>" .
-        "bmi : $bmi <br>".
+        "bmi : $bmi <br>" .
         "keterangan : $ket";
 });
 
-Route::get('/myname/{nama?}', function($a = "Abdu"){
+Route::get('/myname/{nama?}', function ($a = "Abdu") {
     return "my name is $a";
 });
 
 Route::get('/testmodel', function () {
-    $data = Post::all();
-    return $data;
+    $post = Post::all();
+    return view('tampil_post', compact('post'));
 });
 
 Route::get('/testmodelbarang', function () {
-    $data = Barang::all();
-    return $data;
+    $barang = Barang::all();
+    return view('tampil_barang', compact('barang'));
+});
+
+Route::get('/testmodelsiswa', function () {
+    $siswa = Siswa::all();
+    // $siswa = Siswa::find(5);
+    //$siswa = Siswa::where('jenis_kelamin', 'like', 'pria')->get();
+    //   $siswa = new Siswa;
+    //   $siswa->nama = "surya";
+    //   $siswa->jenis_kelamin = "pria";
+    //   $siswa->alamat = "kopo permai";
+    //   $siswa->agama = "islam";
+    //   $siswa->telepon = 62897;
+    //   $siswa->email = "surya@gmail.com";
+    //   $siswa->save();
+    return view('tampil_siswa', compact('siswa'));
+
+});
+
+Route::get('/testmodelpengguna', function () {
+    $pengguna = Pengguna::all();
+    return view('tampil_pengguna', compact('pengguna'));
+});
+
+Route::get('/telepon', function () {
+    $telepons = Telepon::all();
+    return view('tampil_telepon', compact('telepons'));
+});
+
+Route::get('/merek', function () {
+    $mereks = Merek::all();
+    return view('tampil_merek', compact('mereks'));
+});
+
+Route::get('/produk', function () {
+    $produks = Produk::all();
+    return view('tampil_produk', compact('produks'));
+});
+
+Route::get('/transaksi', function () {
+    $transaksis = Transaksi::all();
+    return view('tampil_transaksi', compact('transaksis'));
 });
