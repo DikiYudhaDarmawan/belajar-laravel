@@ -16,8 +16,9 @@
         <tr>
             <th>No</th>
             <th>ID</th>
-            <th>Nama Barang</th>
             <th>Nama Pembeli</th>
+            <th>Jenis Kelamin</th>
+            <th>Nama Barang</th>
             <th>Jumlah</th>
             <th>Tanggal</th>
         </tr>
@@ -26,8 +27,9 @@
             <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $data->id }}</td>
-                <td>{{ $data->barangg->nama_barang }}</td>
                 <td>{{ $data->pembeli->nama_pembeli }}</td>
+                <td>{{ $data->pembeli->jenis_kelamin }}</td>
+                <td>{{ $data->barangg->nama_barang }}</td>
                 <td>{{ $data->jumlah }}</td>
                 <td>{{ $data->tanggal }}</td>
             </tr>

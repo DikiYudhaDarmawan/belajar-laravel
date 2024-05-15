@@ -1,14 +1,17 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\MerekController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProdukController;
 use App\Models\Barang;
+use App\Models\Merek;
 use App\Models\Pengguna;
 use App\Models\Post;
 use App\Models\Produk;
 use App\Models\Siswa;
 use App\Models\Telepon;
-use App\Models\Merek;
 use App\Models\Transaksi;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,3 +129,19 @@ Route::get('/transaksi', function () {
     $transaksis = Transaksi::all();
     return view('tampil_transaksi', compact('transaksis'));
 });
+
+Route::get("/post", [PostController::class, 'menampilkan']);
+Route::get("/post/{id}", [PostController::class, 'show']);
+
+Route::get("/product", [ProdukController::class, 'nampilProduk']);
+Route::get("/product/{id}", [ProdukController::class, 'show']);
+
+Route::get("/merk", [MerekController::class, 'tampilMerek']);
+Route::get("/merk/{id}", [MerekController::class, 'show']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+use Illuminate\Support\Facades\Route;
+Route::resource('brand', BrandController::class);
